@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,7 +16,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = [];
+        $posts = Post::all();
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -23,6 +26,8 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('admin.posts.create');
+
     }
 
     /**
@@ -31,14 +36,21 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+        $data ['author'] = Auth:: user()->name;
+        $data ['creation_date'] = Carbon::now();
+        $newPost = Post::create($data);
+
+        return redirect()->route('admin.posts.show', $newPost);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
         //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
