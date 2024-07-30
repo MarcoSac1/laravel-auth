@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Carbon\Carbon;
@@ -26,17 +27,21 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('admin.posts.create');
+        $post = new Post();
+        return view('admin.posts.create', compact('post'));
 
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         //
-        $data = $request->all();
+        $data = $request->validated();
+
+
+
         $data ['author'] = Auth:: user()->name;
         $data ['creation_date'] = Carbon::now();
         $newPost = Post::create($data);

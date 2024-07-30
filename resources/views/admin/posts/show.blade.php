@@ -7,6 +7,9 @@
             <h2>{{ $post->id }}</h2>
             <h2>{{ $post->title }}</h2>
             <h3>{{ $post->author }}</h3>
+            <div class="image">
+                <img src="{{ $post->image_url }}" class="img-fluid" alt="img">
+            </div>
             <h4>{{ $post->creation_date}}</h4>
             <p>{{ $post->content}}</p>
         </div>

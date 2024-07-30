@@ -23,6 +23,8 @@
                         <td>{{ $post->creation_date}}</td>
                         <td>
                             <a href="{{route ('admin.posts.show',$post )}}" class="btn btn-primary btn-sm">Show</a>
+                            <a href="{{route ('admin.posts.edit',$post )}}" class="btn btn-success btn-sm">Edit</a>
+                            {{-- <a href="{{route ('admin.posts.delete',$post )}}" class="btn btn-warning btn-sm">Delete</a> --}}
                         </td>
                     </tr>
                 </tbody>
