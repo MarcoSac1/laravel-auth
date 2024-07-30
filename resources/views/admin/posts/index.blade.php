@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        @dump($posts)
         <div class="col-12">
             <table class="table table-hover table-success">
                 <thead>
