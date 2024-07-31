@@ -24,7 +24,12 @@
                         <td>
                             <a href="{{route ('admin.posts.show',$post )}}" class="btn btn-primary btn-sm">Show</a>
                             <a href="{{route ('admin.posts.edit',$post )}}" class="btn btn-success btn-sm">Edit</a>
-                            {{-- <a href="{{route ('admin.posts.delete',$post )}}" class="btn btn-warning btn-sm">Delete</a> --}}
+                            <form action="{{route ('admin.posts.destroy',$post )}}" method="POST" class="d-inline-block form-destroyer" data-post-title='{{ $post->title }}'>
+                                @method('delete')
+                                @csrf
+
+                                <input type="submit" class="btn btn-warning btn-sm" value="delete"></input>
+                            </form>
                         </td>
                     </tr>
                 </tbody>
@@ -34,4 +39,8 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('additional-scripts')
+    @vite('resources/js/posts/delete-index-confirmation.js')
 @endsection
